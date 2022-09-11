@@ -1,0 +1,93 @@
+
+.LandingBody{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem;
+}
+.LeftLander{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding-left: 15rem;
+}
+.PayL{
+    display: flex;
+    align-items: center;
+}
+.LoginBox{
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 2rem;
+    border: 1px solid #6E9BF3;
+    border-radius: 2rem;
+    width: 25rem;
+    height: 20rem;
+}
+.SecondaryButton{
+    width: 5rem;
+    display: flex;
+    align-self: center;
+}
+
+.RightLander{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    
+}
+.HeadTittle99{
+font-family: 'JejuGothic';
+font-style: normal;
+font-weight: 700;
+font-size: 7rem;
+text-align: start;
+text-align: center;
+color: #000357;
+}
+.Fronttext{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+}
+.Fronttext2{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+    font-size: 1.4rem;
+    width: 25rem;
+}
+.StartButton{
+    display: flex;
+    width: 25rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+.UpperText{
+    display: flex;
+   text-align: center;
+   justify-content: center;
+   font-weight: 600;
+   font-size: 1.4rem;
+}
+.FieldInfor{
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    align-items: flex-start;
+    font-weight: 700;
+}
+.textBar{
+    padding-left: .7rem;
+    width: 100%;
+ }
+@media only screen and (max-width: 650px) {
+    .LandingBody {
+        display: flex;
+        flex-direction: column;
+    }
+}

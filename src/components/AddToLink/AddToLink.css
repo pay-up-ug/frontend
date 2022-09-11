@@ -1,0 +1,108 @@
+
+.LinkBody2{
+    display: grid;
+    grid-template-columns: .5fr 1fr 1.3fr;
+    gap: 1rem;
+ 
+    padding: 1rem;
+}
+td{
+    text-align: end;
+}
+.PadMe{
+    padding-left: 1.5rem;
+    /* height: 70vh; */
+    gap: 3rem;
+}
+.PartOneHead{
+    width: 25rem;
+}
+.Entryform7{
+    display: flex;
+    padding-top: 7rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SecondaryButtonL{
+   width: fit-content;
+    display: flex;
+    align-self: center;
+}
+.PartOneLast{
+    padding-left: 5rem;
+}
+
+.HeadTittle{
+font-family: 'JejuGothic';
+font-style: normal;
+font-weight: 600;
+font-size: 1.5rem;
+text-align: start;
+color: #000357;
+}
+.fieldwid{
+    width: 25rem;
+}
+.Fronttext{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+}
+.Fronttext2{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+    font-size: 1.4rem;
+    width: 25rem;
+}
+.StartButton{
+    display: flex;
+    width: 25rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+.UpperText{
+    display: flex;
+   text-align: center;
+   justify-content: center;
+   font-weight: 600;
+   font-size: 1.4rem;
+}
+.FieldInfor{
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    align-items: flex-start;
+    font-weight: 700;
+
+}
+.textBar{
+    padding-left: .7rem;
+    width: 100%;
+ }
+ #SelectSection{
+    width: 100%;
+    border: 1px solid #6E9BF3;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #000;
+    font-size: 1rem;
+    width: 25rem;;
+    padding: 0.8rem 1rem;
+ }
+ .SecAlign{
+    display: flex;
+    align-self: center;
+    padding: 2rem;
+ }
+@media only screen and (max-width: 650px) {
+    .LinkBody2 {
+        display: flex;
+        flex-direction: column;
+    }
+}

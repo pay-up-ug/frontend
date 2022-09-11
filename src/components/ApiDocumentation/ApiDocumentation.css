@@ -1,0 +1,159 @@
+
+.HolderBody{
+    display: flex;
+    flex-direction: column;
+    height: 62vh;
+
+}
+.LeftLander{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    padding-left: 15rem;
+}
+
+
+.SecondaryButton{
+    width: 5rem;
+    display: flex;
+    align-self: center;
+}
+
+.RightLander{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    
+}
+.HeadTittle2{
+display: flex;
+align-items: flex-start;
+padding-left: 5rem;
+padding-top: 1rem;
+font-family: 'JejuGothic';
+font-style: normal;
+font-weight: 600;
+font-size: 3rem;
+text-align: start;
+color: #000357;
+}
+.Tittle2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 5rem;
+    padding-top: 2rem;
+    padding-right: 2rem;
+    font-family: 'JejuGothic';
+   
+    color: #000357; 
+}
+.BalanceSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.BalanceItem{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+}
+.BalanceItem5{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 2fr;
+    padding-bottom: 1rem;
+}
+.BalanceItem2{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.HeadTittle3{
+    display: flex;
+    align-items: flex-start;
+    font-family: 'JejuGothic';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2rem;
+ color: #000357; 
+}
+.HeadTittle4{
+    display: flex;
+    align-items: flex-end;
+    text-align: end;
+    font-family: 'JejuGothic';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3rem;
+    color: #000357; 
+}
+.Fronttext{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+}
+.Fronttext5{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+    font-size: 1.4rem;
+    gap:1rem;
+    padding-left: 3rem;
+   
+}
+.text5{
+    font-family: 'JejuGothic';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    text-align: start;
+    color: #000357;
+    font-size: 1.4rem;
+    padding-left: 3rem;
+   
+}
+.Fronttext4{
+    font-family: 'JejuGothic';
+    font-style: normal;
+    text-align: end;
+    color: #000357;
+    font-size: 1.4rem;
+    width: 25rem;
+}
+.ViewButton{
+    display: flex;
+    width: 25rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+.ViewButton4{
+    display: flex;
+    width: 25rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+.Gateway{
+    display: flex;
+    align-self: flex-end;
+}
+.PayL2{
+    display: flex;
+    align-self: flex-end;
+}
+
+
+@media only screen and (max-width: 650px) {
+    .LandingBody {
+        display: flex;
+        flex-direction: column;
+    }
+    .PayL2{
+        align-items: center;
+    }
+}

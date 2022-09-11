@@ -1,0 +1,28 @@
+
+.Header{
+   display: flex;
+   flex-direction: row;
+   height: 4rem;
+   background-color: #6E9BF3;
+   padding: .5rem;
+   justify-content: space-between;
+}
+
+.MenuHead{
+   display: flex;
+   flex-direction: row;
+   gap: 1rem;
+   color: #F4E450;
+   align-items: center;
+}
+.Menuitem{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    color: #F4E450;
+    font-weight: 600;
+    font-size: 1.1rem;
+ }
+ .Menuitem:hover{
+    color: #D7C415;
+ }
