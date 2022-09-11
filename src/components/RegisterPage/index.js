@@ -1,4 +1,4 @@
-import React from "react"
+import React,{useEffect,useState} from "react"
 import "./RegisterPage.css"
 import Header from "../Header";
 import Footer from "../Footer";
@@ -7,11 +7,38 @@ import TextInput from "../TextInput";
 import Spinner from "../Spinner";
 import { ReactComponent as Logo } from "../../assets/images/bigLogo.svg";
 import { connect } from "react-redux"
-// import {
-//   fetchUser
-// } from "../../redux/user/user.actions"
+import {
+  Register,clearUserState
+} from "../../redux/user/user.actions"
 
 function RegisterPage(props) {
+  const [email, setEmail] = useState("")
+  const [name, setName] = useState("")
+  const [password, setPassword] = useState("")
+  const [contact, setContact] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [error, setError] = useState("")
+ 
+  useEffect(() => {
+   // props.clearUserState()
+    if(props.user.userFetched && !props.user.userFailed){
+      window.location.href = `/dashboard`;
+    }
+  }, [props]);
+  const RegisterUser = () => {
+    const user ={
+      email:email.trim(),
+      password:password.trim(),
+      contact:contact.trim(),
+      name:name.trim()
+    }
+    if(password !== confirmPassword){
+      setError("passwords must match")
+      return
+    }else if(email!=="" && password !=="" && contact !=="" && name!==""){
+     props.Register(user);
+    }
+  }
   return (
     <div className="App">
      <Header/>
@@ -25,8 +52,8 @@ function RegisterPage(props) {
           <TextInput
            placeholder="e-mail"
            name="email"
-           value=""
-           onChange={() => {}}
+           value={email}
+           onChange={(event) => {setEmail(event.target.value)}}
           />
           </div>
         </div>
@@ -36,8 +63,8 @@ function RegisterPage(props) {
           <TextInput
            placeholder="name"
            name="name"
-           value=""
-           onChange={() => {}}
+           value={name}
+           onChange={(event) => {setName(event.target.value)}}
           />
           </div>
         </div>
@@ -46,9 +73,9 @@ function RegisterPage(props) {
           <div className="textBar">
           <TextInput
            placeholder="name"
-           name="name"
-           value=""
-           onChange={() => {}}
+           name="contact"
+           value={contact}
+           onChange={(event) => {setContact(event.target.value)}}
           />
           </div>
         </div>
@@ -58,8 +85,13 @@ function RegisterPage(props) {
           <TextInput
            placeholder="password"
            name="password"
-           value=""
-           onChange={() => {}}
+           type="password"
+           value={password}
+           onChange={(event) => {
+            if(error){
+              setError("")
+            }
+            setPassword(event.target.value)}}
           />
           </div>
         </div>
@@ -67,16 +99,27 @@ function RegisterPage(props) {
           Confirm Password
           <div className="textBar">
           <TextInput
-           placeholder="password"
-           name="password"
-           value=""
-           onChange={() => {}}
+           placeholder="confirm password"
+           name="confirmpassword"
+           type="password"
+           value={confirmPassword}
+           onChange={(event) => {
+            if(error){
+              setError("")
+            }
+            setConfirmPassword(event.target.value)
+          }}
           />
           </div>
         </div>
+        <div className="errorPoint">
+         {props.user.error && props.user.error}
+         {error && error}
+        </div>
         <SecondaryButton
           className="SecondaryButton"
-          label="Register"
+          label={props.user.userFetching?<Spinner/>:"Register"}
+          onClick={() => {RegisterUser()}}
         />
       </div>
        </div>
@@ -94,9 +137,9 @@ const mapStateToProps = state => {
     user: state.user,
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-  }
+const mapDispatchToProps =  {
+    Register,
+    clearUserState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterPage)

@@ -1,4 +1,4 @@
-import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED } from '../types';
+import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED,CLEAR_USER_STORE } from '../types';
 
 
     const INITIAL_STATE = {
@@ -19,7 +19,8 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED } from '../types';
                  ...state,
                   userFetching:true,
                   userFetched:false,
-                  userFailed:false
+                  userFailed:false,
+                  error:""
                };
             case FETCH_USER_SUCCESS:
                return {
@@ -35,7 +36,17 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED } from '../types';
                   userFetching:false,
                   userFetched:false,
                   userFailed:true,
+                  userdata:{},
                   error:action.payload
+               };
+            case CLEAR_USER_STORE:
+               return {
+                  ...state,  
+                  userFetching:false,
+                  userFetched:false,
+                  userFailed:false,
+                  userdata:{},
+                  error:""
                };
              default: return state;
 

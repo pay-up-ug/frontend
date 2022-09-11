@@ -22,7 +22,7 @@ import NotFound from "./components/NotFound";
 const ProtectedRoute = ({ isAllowed}) =>
   isAllowed ?  <Outlet /> : <Navigate to="/login" />;
 
-const hasToken = store.getState().user?.token;
+const hasToken = store.getState().user?.userdata.token;
 
 const Routing = () => (
   <Router>
@@ -31,27 +31,37 @@ const Routing = () => (
       <Route exact path="/" element={<App/>} />
       <Route path="/login" element={<LoginPage/>} />
       <Route path="/register" element={<RegisterPage/>} />
-      <Route exact path='/' element={<ProtectedRoute
-      isAllowed={hasToken}/>}>
-            
+      <Route exact path='/dashboard' element={<ProtectedRoute isAllowed={hasToken}/>}>    
       <Route
        path="/dashboard" element={<Dashboard/>}
       />
+      </Route>
+      <Route exact path='/apidashboard' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
         path="/apidashboard" element={<ApiDashBoard/>}
       />
+      </Route>
+      <Route exact path='/linksDashboard' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
         path="/linksDashboard" element={<LinksDashboard/>} 
       />
+      </Route>
+       <Route exact path='/createlink' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
         path="/createlink" element={<CreateLink/>} 
       />
+      </Route>
+      <Route exact path='/apidocs' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
         path="/apidocs" element={<ApiDocumentation/>}  
       />
+      </Route>
+      <Route exact path='/addtolink' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
         path="/addtolink" element={<AddToLink/>}
       />
+      </Route>
+      <Route exact path='/link' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
         path="/link" element={<Settlelink/>} 
       />

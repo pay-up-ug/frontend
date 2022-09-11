@@ -18,9 +18,18 @@ function LoginPage(props) {
   const [password, setPassword] = useState("")
   useEffect(() => {
     if(props.user.userFetched && !props.user.userFailed){
-      window.location.href = `/projects`;
+      window.location.href = `/dashboard`;
     }
   }, [props]);
+  const logUserIn =()=>{
+    const user ={
+      email:email.trim(),
+      password:password.trim()
+    }
+    if(email!=="" && password !==""){
+    props.Login(user);
+    }
+  }
   return (
     <div className="App">
       {/* <div>user: {props.user.userFetching}</div>
@@ -85,7 +94,7 @@ function LoginPage(props) {
         <SecondaryButton
           className="SecondaryButton"
           label={props.user.userFetching?<Spinner/>:"login"}
-          onClick={() => props.fetchUser()}
+          onClick={() => {logUserIn()}}
         />
       </div>
        </div>
@@ -100,10 +109,8 @@ const mapStateToProps = state => {
     user: state.user, 
   }
 }
-const mapDispatchToProps = dispatch => {
-  return {
-    Login: () => dispatch(Login()),
-  }
+const mapDispatchToProps = {
+    Login
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

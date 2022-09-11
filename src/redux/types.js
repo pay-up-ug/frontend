@@ -1,4 +1,5 @@
-//user
+//user login
 export const FETCHING_USER = 'FETCHING_USER';
 export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
 export const FETCH_USER_FAILED = 'FETCH_USER_FAILED';
+export const CLEAR_USER_STORE = 'CLEAR_USER_STORE';

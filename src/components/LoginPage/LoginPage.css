@@ -30,7 +30,7 @@
     border: 1px solid #6E9BF3;
     border-radius: 2rem;
     width: 25rem;
-    height: 20rem;
+    
 }
 .SecondaryButton{
     width: 5rem;
@@ -96,5 +96,12 @@ color: #000357;
     .LandingBody {
         display: flex;
         flex-direction: column;
+    }
+    .LeftLander{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+        padding-left: 1.5rem;
     }
 }
