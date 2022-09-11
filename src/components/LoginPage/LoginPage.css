@@ -4,6 +4,13 @@
     grid-template-columns: 1fr 1fr;
     padding: 1rem;
 }
+.errorPoint{
+    display: flex;
+    color: red;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
 .LeftLander{
     display: flex;
     flex-direction: column;

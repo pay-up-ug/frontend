@@ -5,7 +5,8 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED } from '../types';
         userdata: {},
         userFetching:false,
         userFetched:false,
-        userFailed:false       
+        userFailed:false,       
+        error:""
     };
 
     const userReducer = (state = INITIAL_STATE, action) => {
@@ -13,7 +14,7 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED } from '../types';
         switch (action.type) {
 
             case FETCHING_USER:
-               // console.log("khali")
+               
                return {
                  ...state,
                   userFetching:true,
@@ -25,14 +26,16 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED } from '../types';
                   ...state, 
                   userFetching:false,
                   userFetched:true,
-                  userFailed:false
+                  userFailed:false,
+                  userdata:action.payload
                };
             case FETCH_USER_FAILED:
                return {
                   ...state,  
                   userFetching:false,
                   userFetched:false,
-                  userFailed:true
+                  userFailed:true,
+                  error:action.payload
                };
              default: return state;
 

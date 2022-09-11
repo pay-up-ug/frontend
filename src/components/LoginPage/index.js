@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState,useEffect } from "react"
 import "./LoginPage.css"
 import Header from "../Header";
 import Footer from "../Footer";
@@ -9,11 +9,18 @@ import Spinner from "../Spinner";
 import { ReactComponent as Rotate } from "../../assets/images/rotate.svg";
 import { ReactComponent as Pay } from "../../assets/images/pay.svg";
 import { connect } from "react-redux"
-import {
-  fetchUser
-} from "../../redux/user/user.actions"
+import 
+  Login
+ from "../../redux/user/user.actions"
 
 function LoginPage(props) {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  useEffect(() => {
+    if(props.user.userFetched && !props.user.userFailed){
+      window.location.href = `/projects`;
+    }
+  }, [props]);
   return (
     <div className="App">
       {/* <div>user: {props.user.userFetching}</div>
@@ -54,8 +61,8 @@ function LoginPage(props) {
           <TextInput
            placeholder="e-mail"
            name="email"
-           value=""
-           onChange={() => {}}
+           value={email}
+           onChange={(event) =>{ setEmail(event.target.value)}}
           />
           </div>
         </div>
@@ -65,19 +72,23 @@ function LoginPage(props) {
           <TextInput
            placeholder="password"
            name="password"
-           value=""
-           onChange={() => {}}
+           type="password"
+           value={password}
+           onChange={(event) => {setPassword(event.target.value)}}
           />
           </div>
+
+        </div>
+        <div className="errorPoint">
+         {props.user.error && props.user.error}
         </div>
         <SecondaryButton
           className="SecondaryButton"
-          label="login"
+          label={props.user.userFetching?<Spinner/>:"login"}
+          onClick={() => props.fetchUser()}
         />
       </div>
        </div>
-     
-        
      </div>
      <Footer/>
     </div>
@@ -86,12 +97,12 @@ function LoginPage(props) {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.user, 
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: () => dispatch(fetchUser()),
+    Login: () => dispatch(Login()),
   }
 }
 

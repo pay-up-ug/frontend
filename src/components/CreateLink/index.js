@@ -7,13 +7,6 @@ import TextInput from "../TextInput";
 import Spinner from "../Spinner";
 
 import { connect } from "react-redux"
-import {
-  fetchUser
-} from "../../redux/user/user.actions"
-
-
-
-
 
 function CreateLink(props) {
     const [ selected , setSelected] = useState("");
@@ -114,9 +107,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser()),
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateLink)

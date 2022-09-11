@@ -4,9 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import MajorButton from "../MajorButton";
 import { connect } from "react-redux"
-import {
-  fetchUser
-} from "../../redux/user/user.actions"
+
 
 function LinksDashboard(props) {
   return (
@@ -94,9 +92,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser()),
-  }
+  return { }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LinksDashboard)

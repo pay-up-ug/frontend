@@ -7,9 +7,9 @@ import TextInput from "../TextInput";
 import Spinner from "../Spinner";
 import { ReactComponent as Logo } from "../../assets/images/bigLogo.svg";
 import { connect } from "react-redux"
-import {
-  fetchUser
-} from "../../redux/user/user.actions"
+// import {
+//   fetchUser
+// } from "../../redux/user/user.actions"
 
 function RegisterPage(props) {
   return (
@@ -96,7 +96,6 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUser: () => dispatch(fetchUser()),
   }
 }
 

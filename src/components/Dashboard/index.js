@@ -7,9 +7,7 @@ import MajorButton from "../MajorButton";
 import { ReactComponent as Gateway } from "../../assets/images/gateway.svg";
 import { ReactComponent as Links } from "../../assets/images/links.svg";
 import { connect } from "react-redux"
-import {
-  fetchUser
-} from "../../redux/user/user.actions"
+
 
 function DashBoard(props) {
   return (
@@ -71,9 +69,7 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser()),
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoard)

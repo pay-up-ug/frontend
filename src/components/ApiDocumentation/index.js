@@ -3,10 +3,6 @@ import "./ApiDocumentation.css"
 import Header from "../Header";
 import Footer from "../Footer";
 import MajorButton from "../MajorButton";
-import { connect } from "react-redux"
-import {
-  fetchUser
-} from "../../redux/user/user.actions"
 
 function ApiDashBoardDocs(props) {
   return (
@@ -126,15 +122,6 @@ Lorem Ipsum is simply dummy text of the printing and typesetting
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.user,
-  }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUser: () => dispatch(fetchUser()),
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ApiDashBoardDocs)
+
+export default ApiDashBoardDocs
