@@ -1,6 +1,7 @@
 import React from "react"
 import "./Header.css"
 import { ReactComponent as Logo } from "../../assets/images/logo.svg";
+import { ReactComponent as User } from "../../assets/images/user.svg";
 import { connect } from "react-redux"
 import { Link, useLocation  } from "react-router-dom";
 import {
@@ -19,6 +20,7 @@ function Header(props) {
   const hasToken = user.userdata?.token
 
   return (
+    <>
     <div className="Header">
         <div className="Logo"><Logo/></div>
         <div className="MenuHead">
@@ -50,14 +52,21 @@ function Header(props) {
                Sign up
                </Link>)
               }</>
-               : (<div 
+               : (
+               <div 
                 onClick={logout}
                className="Menuitem">
               Logout
-               </div>)
+               </div>
+               )
              }
         </div>
     </div>
+    {hasToken&& <div className="user">
+      <User/>
+     {user.userdata?.name}
+     </div>}
+     </>
   )
 }
 

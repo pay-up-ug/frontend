@@ -15,6 +15,15 @@
    color: #F4E450;
    align-items: center;
 }
+.user{
+   display: flex;
+   flex-direction: column;
+   padding-right: 1rem;
+   padding-top: .4rem;
+   justify-content: center;
+   align-items: flex-end;
+   color: #6E9BF3;
+}
 .Menuitem{
     display: flex;
     flex-direction: row;

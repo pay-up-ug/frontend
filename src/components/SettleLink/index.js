@@ -22,6 +22,7 @@ function Settlelink(props) {
     const [settlingLink,setSettlingLink] = useState(false);
     const [returningCash,setReturningCash] = useState(false);
     const [killingLink,setKillingLink] = useState(false);
+    const [refreshLink,setRefreshLink] = useState(false);
     useEffect(() => {
       //console.log(linkID)
       fetchLinks();
@@ -44,16 +45,79 @@ function Settlelink(props) {
       //<Navigate to={`/addtolink/${Link.id}`} />
     }
     const SettleBuyerLink = ()=>{
-      
+      let linkData ={
+        linkId:linkID,
+        userId:props.user.userdata.id
+      }
+      setSettlingLink(true);
+      axios
+      .put(`links/received`,linkData)
+      .then((response) => {
+        setSettlingLink(false);
+        window.location.href ="/linksDashboard" 
+      }).catch((error) => {
+        alert("something went wrong")
+        // console.log(error)
+         setSettlingLink(false);
+      });
     }
     const SettleSellerLink = ()=>{
-      
+      let linkData ={
+        linkId:linkID,
+        userId:props.user.userdata.id
+      }
+      setSettlingLink(true);
+      axios
+      .put(`links/delivered`,linkData)
+      .then((response) => {
+        setSettlingLink(false);
+        window.location.href ="/linksDashboard" 
+      }).catch((error) => {
+        alert("something went wrong")
+        // console.log(error)
+         setSettlingLink(false);
+      });
     }
     const ReturnLinkCash = ()=>{
-      
+      let linkData ={
+        linkId:linkID,
+        userId:props.user.userdata.id
+      }
+      setReturningCash(true);
+      axios
+      .post(`links/return`,linkData)
+      .then((response) => {
+        setReturningCash(false);
+        window.location.href ="/linksDashboard" 
+      }).catch((error) => {
+        alert("something went wrong")
+        setReturningCash(false);
+      });
     }
     const CancelLink = ()=>{
-      
+      setKillingLink(true);
+      axios
+      .patch(`links/kill/${Link.id}`)
+      .then((response) => {
+        setKillingLink(false);
+        window.location.href ="/linksDashboard" 
+      }).catch((error) => {
+        alert("something went wrong")
+        console.log(error)
+        setKillingLink(false);
+      });
+    }
+    const RefreshLink = () =>{
+      setRefreshLink(true);
+      axios 
+      .patch(`links/cashrefresh/${linkID}`)
+      .then((response) => {
+        setRefreshLink(false)
+        window.location.href ="/linksDashboard" 
+      }).catch((error) => {
+        alert("something went wrong")
+        setRefreshLink(false);
+      });
     }
   return (
     <div className="App">
@@ -66,13 +130,15 @@ function Settlelink(props) {
      <div className="LinkBodyyp">
       <div className="PartOneHeadS">
       <div className="HeadTittle">{`Link-${linkID}`}</div>
+      {refreshLink?<Spinner/>: <div 
+      onClick={()=>{RefreshLink()}}
+      className="linkrefreash">Refresh link</div>}
        </div>
        <div className="PartOne"> 
        <div className="HeadTittle">
             Link Information
         </div>
         <div className="InforSection">
-
          {fetchLink?<div className="SpinnerM"><Spinner/></div> :<table >
           <tbody>
       <tr>
@@ -113,7 +179,7 @@ function Settlelink(props) {
         <td>{Link.sellerName===""?"-----":Link.sellerName}</td>
     </tr>
     <tr>
-        <th>Deliverved</th>
+        <th>Delivered</th>
         <td>{Link.delivered?"yes":"no"}</td>
     </tr>
     <tr>
@@ -126,12 +192,31 @@ function Settlelink(props) {
         {linkError}
          </div>}
         </div>
-        {(Link.delivered && Link.recieved && Link.status === "active") && (<div className="SecAlign">
+        {(!Link.delivered 
+          && props.user.userdata.id === Link.sellerId &&
+           Link.status === "active") && (
+           <div className="SecAlign">
         <SecondaryButton
-          className="SecondaryButton"
-          label="Settle Link"
+          className="SecondaryButtonL"
+          label={settlingLink?<Spinner/>:"Confirm You Delivered"}
+          onClick={()=>{SettleSellerLink()}}
         />
         </div>)}
+        {(!Link.recieved 
+          && props.user.userdata.id === Link.buyerId &&
+           Link.status === "active") && (
+            <>
+        <div className="SecAlign">
+           <SecondaryButton
+           className="SecondaryButtonL"
+          label={settlingLink?<Spinner/>:"Confirm You Recieved"}
+          onClick={()=>{SettleBuyerLink()}}
+        />
+       
+        </div>
+         <>On Confirming this, money will automatically be sent to the seller</>
+         </>
+        )}
         {(props.user.userdata.id !== Link.sellerId 
            && props.user.userdata.id !== Link.buyerId
            &&(Link.sellerId === "" || Link.buyerId ==="")
@@ -151,7 +236,8 @@ function Settlelink(props) {
    {props.user.userdata.id === Link.buyerId && <div className="SecAlign">
         <SecondaryButton
           className="SecondaryButton"
-          label="Return Cash"
+          label={returningCash?<Spinner/>:"Return Cash"}
+          onClick={()=>{ReturnLinkCash()}}
         />
     </div>}
     {/* <div className="SecAlign">
@@ -163,7 +249,8 @@ function Settlelink(props) {
     {(Link.status === "inactive" && props.user.userdata.id === Link.ownerId) && <div className="SecAlign">
         <SecondaryButton
           className="SecondaryButton"
-          label="Cancel link"
+          label={killingLink?<Spinner/>:"Cancel link"}
+          onClick={()=>{CancelLink()}}
         />
     </div>}
     </div>}

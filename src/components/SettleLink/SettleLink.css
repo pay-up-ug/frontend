@@ -88,6 +88,13 @@ color: #000357;
     width: 25rem;;
     padding: 0.8rem 1rem;
  }
+ .linkrefreash{
+    color: #6E9BF3;
+    text-align: start;
+ }
+ .linkrefreash:hover{
+    text-decoration: underline;
+ }
  .SecAlign{
     display: flex;
     align-self: center;
