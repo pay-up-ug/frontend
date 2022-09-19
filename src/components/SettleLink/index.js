@@ -97,7 +97,7 @@ function Settlelink(props) {
     const CancelLink = ()=>{
       setKillingLink(true);
       axios
-      .patch(`links/kill/${Link.id}`)
+      .patch(`links/kill/${linkID}`,{})
       .then((response) => {
         setKillingLink(false);
         window.location.href ="/linksDashboard" 
@@ -246,13 +246,13 @@ function Settlelink(props) {
           label="Edit Link"
         />
     </div> */}
-    {(Link.status === "inactive" && props.user.userdata.id === Link.ownerId) && <div className="SecAlign">
+    {/* {(Link.status === "inactive" && props.user.userdata.id === Link.ownerId) && <div className="SecAlign">
         <SecondaryButton
           className="SecondaryButton"
           label={killingLink?<Spinner/>:"Cancel link"}
           onClick={()=>{CancelLink()}}
         />
-    </div>}
+    </div>} */}
     </div>}
      </div>
      <Footer/>
