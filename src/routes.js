@@ -6,7 +6,7 @@ import {
     Outlet ,
     Navigate,
 } from "react-router-dom";
-import store from "./redux/store";
+// import store from "./redux/store";
 import App from "./components/App";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
@@ -16,13 +16,16 @@ import ApiDocumentation from "./components/ApiDocumentation";
 import LinksDashboard from "./components/LinksDashboard";
 import CreateLink from "./components/CreateLink";
 import AddToLink from "./components/AddToLink";
-import Settlelink from"./components/SettleLink";
+import Settlelink from"./components/SettleLink/index.js";
 import NotFound from "./components/NotFound";
 // Protected route should have token. If not, login.
+
 const ProtectedRoute = ({ isAllowed}) =>
   isAllowed ?  <Outlet /> : <Navigate to="/login" />;
 
-const hasToken = store.getState().user?.userdata.token;
+
+// const hasToken = store.getState().user?.userdata?.token;
+const hasToken = localStorage.getItem("token")
 
 const Routing = () => (
   <Router>
@@ -56,14 +59,14 @@ const Routing = () => (
         path="/apidocs" element={<ApiDocumentation/>}  
       />
       </Route>
-      <Route exact path='/addtolink' element={<ProtectedRoute isAllowed={hasToken}/>}>
+      <Route exact path='/addtolink/:linkID' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
-        path="/addtolink" element={<AddToLink/>}
+        path="/addtolink/:linkID" element={<AddToLink/>}
       />
       </Route>
-      <Route exact path='/link' element={<ProtectedRoute isAllowed={hasToken}/>}>
+      <Route exact path='/link/:linkID' element={<ProtectedRoute isAllowed={hasToken}/>}>
       <Route
-        path="/link" element={<Settlelink/>} 
+        path="/link/:linkID" element={<Settlelink/>} 
       />
         </Route>
      

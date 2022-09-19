@@ -9,8 +9,8 @@
     /* height: 70vh; */
     gap: 3rem;
 }
-.PartOneHead{
-    width: 25rem;
+.PartOneHeadS{
+    width: 25rem;;
 }
 .Entryform{
     display: flex;

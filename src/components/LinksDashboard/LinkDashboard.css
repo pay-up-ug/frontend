@@ -15,10 +15,7 @@ th{
  padding: 1rem;
  gap: 1rem;
 }
-td{
- padding: 1rem;
- gap: 1rem;
-}
+
 .link{
     color: blue;
 }
@@ -156,6 +153,14 @@ color: #000357;
 .NewLink{
     display: flex;
     width: 20rem;
+}
+.SpinnerM{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    width: 25rem;
+    height: 25rem;
 }
 
 

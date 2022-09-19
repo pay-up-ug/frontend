@@ -1,13 +1,16 @@
 
 .LinkBody2{
     display: grid;
-    grid-template-columns: .5fr 1fr 1.3fr;
+    grid-template-columns: .5fr .7fr 1.3fr;
     gap: 1rem;
  
     padding: 1rem;
 }
+.warning{
+    padding: .5rem
+}
 td{
-    text-align: end;
+    text-align: center;
 }
 .PadMe{
     padding-left: 1.5rem;
@@ -15,7 +18,7 @@ td{
     gap: 3rem;
 }
 .PartOneHead{
-    width: 25rem;
+    width: 17rem;
 }
 .Entryform7{
     display: flex;

@@ -3,7 +3,7 @@ import "./Dashboard.css"
 import Header from "../Header";
 import Footer from "../Footer";
 import MajorButton from "../MajorButton";
-
+import { Link } from "react-router-dom";
 import { ReactComponent as Gateway } from "../../assets/images/gateway.svg";
 import { ReactComponent as Links } from "../../assets/images/links.svg";
 import { connect } from "react-redux"
@@ -29,9 +29,12 @@ function DashBoard(props) {
         Thanks for chosing Pay-up
         </div>
          <div className="ViewButton">
+         <Link 
+            to="/apidashboard">
           <MajorButton
           label="View API Dashboard"
           />
+          </Link>
          </div>
         <Gateway className="Gateway"/>
        </div>
@@ -49,14 +52,14 @@ function DashBoard(props) {
         It can either be initiated by the buyer or seller
         </div>
          <div className="ViewButton4">
+         <Link 
+            to="/linksDashboard">
           <MajorButton
           label="View Payments Link"
           />
+          </Link>
          </div>
-     
-       </div>
-     
-        
+       </div>  
      </div>
      <Footer/>
     </div>

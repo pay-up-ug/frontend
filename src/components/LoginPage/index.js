@@ -6,16 +6,22 @@ import MajorButton from "../MajorButton";
 import SecondaryButton from "../SecondaryButton";
 import TextInput from "../TextInput";
 import Spinner from "../Spinner";
+import { Link } from "react-router-dom";
 import { ReactComponent as Rotate } from "../../assets/images/rotate.svg";
 import { ReactComponent as Pay } from "../../assets/images/pay.svg";
 import { connect } from "react-redux"
 import 
-  Login
+  Login,{
+    clearUserState
+  }
  from "../../redux/user/user.actions"
 
 function LoginPage(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  useEffect(() => {
+      props.clearUserState();
+  }, []);
   useEffect(() => {
     if(props.user.userFetched && !props.user.userFailed){
       window.location.href = `/dashboard`;
@@ -30,6 +36,7 @@ function LoginPage(props) {
     props.Login(user);
     }
   }
+ 
   return (
     <div className="App">
       {/* <div>user: {props.user.userFetching}</div>
@@ -52,9 +59,11 @@ function LoginPage(props) {
         methods with accessible  fast support. 
         </div>
          <div className="StartButton">
+         <Link to="/register">
           <MajorButton
           label="Get Started"
           />
+          </Link>
          </div>
         <Rotate/>
        </div>
@@ -110,7 +119,8 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = {
-    Login
+    Login,
+    clearUserState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

@@ -62,13 +62,15 @@ color: #000357;
 .BalanceItem5{
     display: grid;
     align-items: center;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1.5fr;
     padding-bottom: 1rem;
+    width: 20rem;
 }
 .BalanceItem2{
     display: grid;
     justify-content: center;
-    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+    grid-template-columns: .5fr 1fr .5fr;
 }
 .HeadTittle3{
     display: flex;
@@ -95,15 +97,23 @@ color: #000357;
     text-align: start;
     color: #000357;
 }
-.Fronttext5{
+.KeysDiv{
     font-family: 'JejuGothic';
+    width: 25rem;
     font-style: normal;
     text-align: start;
     color: #000357;
     font-size: 1.4rem;
-    gap:1rem;
+    gap:.4rem;
     padding-left: 3rem;
-   
+}
+.viewlink{
+    color: #000357;
+    font-family: 'JejuGothic';
+    text-decoration: underline;
+}
+.viewlink:hover{
+    color: black;
 }
 .text5{
     font-family: 'JejuGothic';
@@ -144,6 +154,9 @@ color: #000357;
 .PayL2{
     display: flex;
     align-self: flex-end;
+}
+.smallText{
+    font-size: small;
 }
 
 

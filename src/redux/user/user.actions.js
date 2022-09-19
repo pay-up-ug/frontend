@@ -4,9 +4,8 @@ import {
     FETCHING_USER,
     FETCH_USER_SUCCESS,
     FETCH_USER_FAILED,
-    CLEAR_USER_STORE,
+    CLEAR_USER_STORE
   } from "./../types";
-
  const loginSuccess = (data) => {
     return {
         type: FETCH_USER_SUCCESS,
@@ -29,6 +28,7 @@ export const clearUserState = () => {
         type: CLEAR_USER_STORE,
     };
 };
+
 
 
 const Login = (userData) => async (dispatch) => {
@@ -63,7 +63,7 @@ const Login = (userData) => async (dispatch) => {
                 //console.log(err.response.data.messege)
             });
      }
-export const Register = (userNew) => async (dispatch) => {
+ export const Register = (userNew) => async (dispatch) => {
         dispatch(loginfetching());
         axios({
             url: API_BASE_URL+"/users/Createuser",

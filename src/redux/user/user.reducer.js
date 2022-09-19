@@ -1,5 +1,9 @@
-import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED,CLEAR_USER_STORE } from '../types';
-
+import { 
+   FETCHING_USER, 
+   FETCH_USER_SUCCESS,
+   FETCH_USER_FAILED,
+   CLEAR_USER_STORE,
+} from '../types';
 
     const INITIAL_STATE = {
         userdata: {},
@@ -10,11 +14,8 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED,CLEAR_USER_STORE } 
     };
 
     const userReducer = (state = INITIAL_STATE, action) => {
-
         switch (action.type) {
-
-            case FETCHING_USER:
-               
+            case FETCHING_USER:      
                return {
                  ...state,
                   userFetching:true,
@@ -49,7 +50,6 @@ import { FETCHING_USER, FETCH_USER_SUCCESS,FETCH_USER_FAILED,CLEAR_USER_STORE } 
                   error:""
                };
              default: return state;
-
         }
 
     };

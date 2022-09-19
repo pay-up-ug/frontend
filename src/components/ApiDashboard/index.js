@@ -1,15 +1,33 @@
-import React from "react"
+import React,{ useState,useEffect } from "react"
 import "./ApiDashboard.css"
 import Header from "../Header";
 import Footer from "../Footer";
 import MajorButton from "../MajorButton";
 import { connect } from "react-redux"
+import 
+   genarateApiKeys, {clearKeysState}
+ from "../../redux/OpenApiKeys/openapi.actions"
+ import {
+  clearUserState
+} from "../../redux/user/user.actions"
+import Spinner from "../Spinner";
 
 function ApiDashBoard(props) {
+  const { user } = props;
+  const [secret, setSecret] = useState(false);
+  useEffect(() => {
+    if(!props.apiKeys.isGenaratingKeys &&
+       props.apiKeys.isGenerated && !props.apiKeys.FailedToGenerated){
+        localStorage.clear();
+        props.clearUserState();
+        props.clearKeysState();
+        window.location.href = "/login";
+    }
+  }, [props]);
+
   return (
-    <div className="App">
-      {/* <div>user: {props.user.userFetching}</div>
-      <button onClick={() => props.fetchUser()}>User</button> */}
+    <div className="App">  
+    
      <Header/>
      <div className="Tittle2">
        <div className="HeadTittle3" >API Control</div>
@@ -19,11 +37,11 @@ function ApiDashBoard(props) {
         />
         <div className="BalanceItem">
         <div>Environment: </div>
-        <div>Testing</div>
+        <div>{user.userdata.environment}</div>
         </div>
         <div className="BalanceItem">
         <div>Test Wallet: </div>
-        <div>0 UGX</div>
+      <div>{`${user.userdata.testBalance} UGX`}</div>
         </div>
         </div>
       </div>
@@ -32,26 +50,34 @@ function ApiDashBoard(props) {
       <div className="HeadTittle3">
         KEYS
       </div>
-        <div className="Fronttext5">
-        <div className="BalanceItem5">
-        <div>Public key: </div>
-        <div>mkfjfdjfhadhiuhfdahfadfjnadsbhf</div>
+      {(user.userdata.publicKey !=="" && user.userdata.privateKey !=="") ? 
+     ( <div className="KeysDiv">
+      <div className="BalanceItem5">
+      <div>Public key: </div>
+      <div className="smallText">{user.userdata.publicKey}</div>
+      </div>
+      <div className="BalanceItem2">
+      <div>Private key: </div>
+      <div className="smallText">{secret?user.userdata.privateKey:"********************"}</div>
+      <div
+      className="viewlink"
+        onClick={()=>{setSecret(!secret)}}
+        >
+        {secret?"Hide":"View"}
         </div>
-        <div className="BalanceItem2">
-        <div>Private key: </div>
-        <div>********************</div>
-        <MajorButton
-          label="View"
-          />
-        </div>
-        
-        </div>
+      </div>
+      </div>):<></>}
          <div className="ViewButton">
           <MajorButton
-          label="Re-generate keys"
+          label={(props.apiKeys.isGenaratingKeys)?<Spinner/>:
+            (user.userdata.publicKey !=="" && user.userdata.privateKey !=="")
+          ?"Re-Generate keys":"Generate keys"}
+          onClick={()=>{props.genarateApiKeys(user.userdata.id)}}
           />
          </div>
-       
+         <div className="errorPoint">
+         {props.apiKeys.message && props.apiKeys.message}
+         </div>
        </div>  
        <div className="LeftLander">
       <div className="HeadTittle3">
@@ -70,11 +96,14 @@ function ApiDashBoard(props) {
 
 const mapStateToProps = state => {
   return {
-    user: state.user,
+    user: state.user, 
+    apiKeys: state.apiKeys
   }
 }
-const mapDispatchToProps = dispatch => {
-  return { }
+const mapDispatchToProps = {
+  genarateApiKeys,
+  clearUserState,
+  clearKeysState
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApiDashBoard)
