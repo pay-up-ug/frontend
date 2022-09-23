@@ -25,7 +25,7 @@ function Header(props) {
         <div className="Logo"><Logo/></div>
         <div className="MenuHead">
             <Link 
-            to="/dashboard"
+            to="/apidocs"
             className="Menuitem">
             API docs
             </Link>

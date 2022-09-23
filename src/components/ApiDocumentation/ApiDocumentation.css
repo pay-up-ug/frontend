@@ -5,6 +5,14 @@
     height: 62vh;
 
 }
+.HolderBodyDocs{
+    display: flex;
+    padding-right: 7rem;  
+}
+.imageClass{
+    display: flex;
+    width: 45rem;
+}
 .LeftLander{
     display: flex;
     flex-direction: column;
@@ -145,6 +153,17 @@ color: #000357;
 .PayL2{
     display: flex;
     align-self: flex-end;
+}
+.DocsHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 11rem;
+}
+.DocsHeaderItem{
+    text-decoration: underline;
+    color: #000357;
+    font-size: 2rem;
 }
 
 
