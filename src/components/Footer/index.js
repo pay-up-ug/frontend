@@ -13,20 +13,20 @@ function Footer() {
             <div className="Menuhead">
             Support
             </div>
-            <div className="Menuitem">
+            <a href="mailto:khalifanmuwonge.com" className="Menuitem">
             E-mail
-            </div>
-            <div className="Menuitem">
+            </a>
+            <a href="tel:+256706081432" className="Menuitem">
             Contact us
-            </div>
+            </a>
         </div>
         <div className="Menu">
             <div className="Menuhead">
             Company
             </div>
-            <div className="Menuitem">
-            Team
-            </div>
+            <a href="https://github.com/pay-up-ug" className="Menuitem">
+            Github
+            </a>
         </div>
         </div>
         <div className="mark">
