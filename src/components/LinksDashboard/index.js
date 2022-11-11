@@ -61,8 +61,8 @@ const fetchLinks = () =>{
       <tbody>
       <tr>
         <th>Tittle</th>
-        <th>Status</th>
         <th>Time & date</th>
+        <th>Status</th>
         <th>Owner type</th>
         <th>Owner</th>
         <th>Cashed</th>
