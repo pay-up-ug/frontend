@@ -2,7 +2,6 @@
 .Footer{
     display: flex;
     flex-direction: row;
-    height: 6rem;
     background-color: #6E9BF3;
     padding: .5rem;
     justify-content: space-between;

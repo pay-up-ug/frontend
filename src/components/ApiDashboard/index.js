@@ -2,6 +2,7 @@ import React,{ useState,useEffect } from "react"
 import "./ApiDashboard.css"
 import Header from "../Header";
 import Footer from "../Footer";
+import axios from "../../axios";
 import MajorButton from "../MajorButton";
 import { connect } from "react-redux"
 import 
@@ -10,11 +11,15 @@ import
  import {
   clearUserState
 } from "../../redux/user/user.actions"
+import Moment from 'moment';
 import Spinner from "../Spinner";
 
 function ApiDashBoard(props) {
   const { user } = props;
   const [secret, setSecret] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [transactions, setTransactions] = useState([])  
+  const [error, setErrors] = useState("") 
   useEffect(() => {
     if(!props.apiKeys.isGenaratingKeys &&
        props.apiKeys.isGenerated && !props.apiKeys.FailedToGenerated){
@@ -25,9 +30,28 @@ function ApiDashBoard(props) {
     }
   }, [props]);
 
+ 
+useEffect(() => {
+   fetchTransactions();
+}, []);
+const fetchTransactions = () =>{
+  setLoading(true);
+  setErrors("")
+  axios
+  .post(`api/playground/v1/transactionSummary`,{adminId:props.user.userdata.id})
+  .then((response) => {
+     console.log(response)
+    setTransactions(response.data.data)
+    setLoading(false);
+  }).catch((error) => {
+     console.log(error)
+    setErrors("something went wrong")
+    setLoading(false);
+  });
+}
+
   return (
     <div className="App">  
-    
      <Header/>
      <div className="Tittle2">
        <div className="HeadTittle3" >API Control</div>
@@ -45,7 +69,7 @@ function ApiDashBoard(props) {
         </div>
         </div>
       </div>
-     <div className="HolderBody">
+     <div className="HolderBodyAPI">
       <div className="LeftLander">
       <div className="HeadTittle3">
         KEYS
@@ -79,14 +103,52 @@ function ApiDashBoard(props) {
          {props.apiKeys.message && props.apiKeys.message}
          </div>
        </div>  
-       <div className="LeftLander">
+       <div className="LeftLanderAPI">
       <div className="HeadTittle3">
       YOUR API RECORDS
       </div>
-        <div className="text53">
-          No records Yet
-         </div>
-       
+      {error &&  <div className="errorPoint">
+       {error}
+       </div>}
+       {loading?<div className="text53"><Spinner/></div> :
+       (transactions.length ===0  && error ==="")? 
+       <div className="text53">
+       No records Yet
+      </div>  :
+        <div className="trasactionsTable" >
+        <table >
+        <tbody>
+        <tr>
+        <th>Time & date</th>
+          <th>Amount</th>
+          <th>Currency</th>
+          <th>Status</th>
+          <th>payee email</th>
+          <th>payee Number</th>
+          <th>payment Method</th>
+          <th>Wallet</th>
+        </tr>
+       {transactions.map((element, index) => {
+         return ( <tr key={index}>
+          <td>{Moment(element.createdAt)
+          .format('DD-MM-YYYY')}</td>
+          <td>{element.amount}</td>
+          <td>{element.currency}</td>
+          <td>{element.status}</td>
+          <td>{element.payee.email}
+          </td>
+          <td>{element.payee.contact}</td>
+          <td>{element.paymentMethod}</td>
+          <td>{element.paymentMethod==="card"?
+          element.metaInfor.cardType:
+          "Mobile wallet"}</td>
+          </tr>)
+        })}
+      </tbody>
+     </table>
+        </div> 
+      } 
+        
        </div>     
      </div>
      <Footer/>
