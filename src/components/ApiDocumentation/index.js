@@ -103,7 +103,7 @@ function ApiDashBoardDocs(props) {
             <img id="image" src={responsemomo}
         className="imageClass"
             alt="keys screenshot" /><br/>
-            For the case of monitoring the transaction. You can send a get request to:<br/>
+            For the case of monitoring the transaction. You can send a post request to:<br/>
             <div className="link">
                https://pay-upbackend.herokuapp.com/api/playground/v1/mobilepay/track/"private_key"</div><br/>
               This should be done on the server side and it's body is the
@@ -124,7 +124,7 @@ function ApiDashBoardDocs(props) {
           <br/>
          
           The the card payments Api can be accessed from the links above.
-          attach your public key where your see "ublic_key". Ps, only supports mastercard and visa will 
+          attach your public key where your see "public_key". Ps, only supports mastercard and visa will 
           work, mastercard  starts with a 5 and visa with a 4
           This is a post request and the raw format of it's body is;<br/>
           <img id="image" src={cardbody}
@@ -134,7 +134,7 @@ function ApiDashBoardDocs(props) {
             <img id="image" src={cardResponse}
         className="imageClass"
             alt="keys screenshot" /><br/>
-            For the case of monitoring the transaction. You can send a get request to:<br/>
+            For the case of monitoring the transaction. You can send a post request to:<br/>
             <div className="link">
                https://pay-upbackend.herokuapp.com/api/playground/v1/cardpayment/track/"private_key"</div><br/>
               This should be done on the server side and it's body is the
