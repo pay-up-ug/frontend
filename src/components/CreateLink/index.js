@@ -12,7 +12,7 @@ import {
 import { connect } from "react-redux"
 
 function CreateLink(props) {
-    const [ selected , setSelected] = useState("");
+    const [ selected , setSelected] = useState("Seller");
     const [creator, setCreator] = useState(props.user.userdata.name)
   const [title, setTitle] = useState("")
   const [phone, setPhone] = useState(props.user.userdata.contact)
